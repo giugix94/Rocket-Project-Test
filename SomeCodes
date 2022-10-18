@@ -1,0 +1,15 @@
+/* Codice usato per muovere un oggetto da un punto A a un punto B e viceversa
+costantemente nel tempo.
+L'oggetto si muove grazie a un'andamento sinusoidale tra i valori 1 e -1
+1) cycles: cicli
+2) tau: valore costante
+3) rawSinWave: nel tempo il valore ricavato oscilla tra 1 e -1
+4) movementeFactor: un aggiustamento per avere un valore tra 0 e 1 (e non più -1 e 1) */
+
+    void Update()
+    {
+        float cycles = Time.time / period; //continually growing over time
+        const float tau = Mathf.PI * 2; //costant value of 6.283
+        float rawSinWave = Mathf.Sin(cycles * tau); //going from -1 to 1
+        movementFactor = (rawSinWave + 1f) / 2f; //recalculated to go from 0 to 1 so its cleaner 
+    }
